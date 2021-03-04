@@ -2,7 +2,7 @@
 	"folders": [
 		{
 			"name": "leetcode",
-			"path": "../../../../uioporqwerty/projects/leetcode"
+			"path": "../leetcode/"
 		}
 	],
 	"settings": {}
