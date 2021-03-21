@@ -1,0 +1,66 @@
+--
+-- @lc app=leetcode id=1667 lang=mysql
+--
+-- [1667] Fix Names in a Table
+--
+-- https://leetcode.com/problems/fix-names-in-a-table/description/
+--
+-- database
+-- Easy (63.37%)
+-- Likes:    15
+-- Dislikes: 18
+-- Total Accepted:    3.8K
+-- Total Submissions: 6K
+-- Testcase Example:  '{"headers":{"Users":["user_id","name"]},"rows":{"Users":[[1,"aLice"],[2,"bOB"]]}}'
+--
+-- Table: Users
+--
+--
+-- +----------------+---------+
+-- | Column Name    | Type    |
+-- +----------------+---------+
+-- | user_id        | int     |
+-- | name           | varchar |
+-- +----------------+---------+
+-- user_id is the primary key for this table.
+-- This table contains the ID and the name of the user. The name consists of
+-- only lowercase and uppercase characters.
+--
+--
+--
+--
+-- Write an SQL query to fix the names so that only the first character is
+-- uppercase and the rest are lowercase.
+--
+-- Return the result table ordered by user_id.
+--
+-- The query result format is in the following example:
+--
+--
+--
+--
+-- Users table:
+-- +---------+-------+
+-- | user_id | name  |
+-- +---------+-------+
+-- | 1       | aLice |
+-- | 2       | bOB   |
+-- +---------+-------+
+--
+-- Result table:
+-- +---------+-------+
+-- | user_id | name  |
+-- +---------+-------+
+-- | 1       | Alice |
+-- | 2       | Bob   |
+-- +---------+-------+
+--
+--
+--
+
+-- @lc code=start
+select user_id, concat(ucase(left(name, 1)), lcase(substring(name, 2))) as name
+from users
+order by user_id
+-- @lc code=end
+
