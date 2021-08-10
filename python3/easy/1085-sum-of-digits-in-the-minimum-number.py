@@ -50,7 +50,7 @@ class Solution:
     def getSum(self, n: int) -> int:
         total = 0
         while n:
-            total += n % 2
+            total += n % 10
             n //= 10
         return total
 
