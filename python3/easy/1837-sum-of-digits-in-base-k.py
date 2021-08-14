@@ -62,9 +62,7 @@ class Solution:
         power = int(log(n, base))
         converted = 0
         for pow in range(power, -1, -1):
-            # Divide
             converted += (10 ** pow) * (n // (base ** pow))
-            # Remainder
             n %= base ** pow
 
         return converted
