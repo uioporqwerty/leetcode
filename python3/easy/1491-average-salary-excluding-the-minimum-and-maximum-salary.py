@@ -68,13 +68,15 @@
 # @lc code=start
 class Solution:
     def average(self, salary: List[int]) -> float:
-        min_salary = min(salary)
-        max_salary = max(salary)
+        min_salary = float("inf")
+        max_salary = float("-inf")
         total_salaries = 0
         salaries = len(salary) - 2
         for sal in salary:
-            if sal != min_salary and sal != max_salary:
-                total_salaries += sal
-        return total_salaries / salaries
+            min_salary = min(min_salary, sal)
+            max_salary = max(max_salary, sal)
+            total_salaries += sal
+        
+        return (total_salaries - min_salary - max_salary) / salaries
         
 # @lc code=end
