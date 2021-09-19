@@ -75,7 +75,6 @@ class Solution:
         
         while q:
             node = q.popleft()
-            print(node)
             for i in range(len(prerequisites)):
                 prereq, course = prerequisites[i]
                 if prereq == node:
