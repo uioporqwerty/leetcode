@@ -80,7 +80,6 @@ class Solution:
             return -1
 
         total = 0
-        result = 0
         start = 0
         for i in range(len(gas)):
             total += gas[i] - cost[i]
