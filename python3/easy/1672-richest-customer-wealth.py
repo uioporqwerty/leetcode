@@ -68,12 +68,10 @@
 class Solution:
     def maximumWealth(self, accounts: List[List[int]]) -> int:
         max_wealth = 0
-        for x in range(len(accounts)):
-            person_wealth = 0
-            for y in range(len(accounts[x])):
-                person_wealth += accounts[x][y]
-            max_wealth = max(max_wealth, person_wealth)
-
+        for account in accounts:
+            wealth = sum(account)
+            max_wealth = max(max_wealth, wealth)
+        
         return max_wealth
 
 
