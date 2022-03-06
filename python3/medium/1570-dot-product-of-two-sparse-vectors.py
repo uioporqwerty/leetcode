@@ -69,14 +69,27 @@
 # @lc code=start
 class SparseVector:
     def __init__(self, nums: List[int]):
-        self.nums = nums
+        self.internal_nums = []
+        for i in range(len(nums)):
+            if nums[i] != 0:
+                self.internal_nums.append((i, nums[i]))
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
-        product = 0
-        for i in range(len(self.nums)):
-            product += self.nums[i] * vec.nums[i]
-        return product
+        i, j = 0, 0
+        product = None
+        
+        while i < len(self.internal_nums) and j < len(vec.internal_nums):
+            if self.internal_nums[i][0] < vec.internal_nums[j][0]:
+                i += 1
+            elif self.internal_nums[i][0] > vec.internal_nums[j][0]:
+                j += 1
+            else:
+                product = self.internal_nums[i][1] * vec.internal_nums[j][1] if not product else product + self.internal_nums[i][1] * vec.internal_nums[j][1] 
+                i += 1
+                j += 1
+        
+        return product if product else 0
 
 # Your SparseVector object will be instantiated and called as such:
 # v1 = SparseVector(nums1)
