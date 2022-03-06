@@ -63,22 +63,23 @@ from math import *
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
         heap = []
+
         for i in range(k):
-            heappush(heap, (-self.getDistance(points[i]), points[i]))
-
+            distance_from_origin = self.getDistance((0,0), points[i])
+            heappush(heap, (-distance_from_origin, points[i]))
+        
         for i in range(k, len(points)):
-            if len(heap) >= k and self.getDistance(points[i]) < -heap[0][0]:
+            distance_from_origin = self.getDistance((0,0), points[i])
+            
+            if len(heap) >= k and distance_from_origin < -heap[0][0]:
                 heappop(heap)
-                heappush(heap, (-self.getDistance(points[i]), points[i]))
+                heappush(heap, (-distance_from_origin, points[i]))
 
-        closest_points = []
-        for item in heap:
-            closest_points.append(item[1])
+        
+        return list([point[1] for point in heap])
 
-        return closest_points
-
-    def getDistance(self, point1: [int, int]) -> int:
-        return sqrt(pow(point1[0] - 0, 2) + pow(point1[1] - 0, 2))
+    def getDistance(self, point1: [int, int], point2: [int, int]):
+        return sqrt(pow((point1[0] - point2[0]), 2) + pow((point1[1] - point2[1]), 2))
 
 
 # @lc code=end
