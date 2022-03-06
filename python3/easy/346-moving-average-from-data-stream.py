@@ -55,22 +55,23 @@
 #
 
 # @lc code=start
-from collections import deque
 
+from collections import deque
 
 class MovingAverage:
     def __init__(self, size: int):
-        self.arr = deque()
         self.max_size = size
-        self.moving_sum = 0
-
+        self.q = deque()
+        self.current_value = 0
+        
     def next(self, val: int) -> float:
-        self.moving_sum += val
-        self.arr.append(val)
-        if len(self.arr) > self.max_size:
-            self.moving_sum -= self.arr.popleft()
-        return self.moving_sum / len(self.arr)
+        # O(1) time O(n) space
+        if len(self.q) + 1 > self.max_size:
+            self.current_value -= self.q.popleft()
+        self.current_value += val
+        self.q.append(val)
 
+        return self.current_value / len(self.q)
 
 # Your MovingAverage object will be instantiated and called as such:
 # obj = MovingAverage(size)
