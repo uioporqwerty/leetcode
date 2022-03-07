@@ -50,15 +50,16 @@ from heapq import heappush, heappop
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        minHeap = []
         frequencies = Counter(nums)
+        heap = []
 
         for num in frequencies:
-            heappush(minHeap, (frequencies[num], num))
-            if len(minHeap) > k:
-                heappop(minHeap)
-
-        return [num for frequency, num in minHeap]
+            frequency = frequencies[num]
+            heappush(heap, (frequency, num))
+            if len(heap) > k:
+                heappop(heap)
+        
+        return [val for _, val in heap]
 
 
 # @lc code=end
