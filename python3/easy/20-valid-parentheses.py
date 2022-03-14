@@ -73,25 +73,21 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
+        open_parens = set(['(', '{', '['])
+        closing_paren_pairs = {
+            ')': '(',
+            ']': '[',
+            '}': '{'
+        }
 
-        for i in range(len(s)):
-            if s[i] == "(" or s[i] == "[" or s[i] == "{":
-                stack.append(s[i])
+        for c in s:
+            if c in open_parens:
+                stack.append(c)
             else:
-                if not stack:
+                if not stack or closing_paren_pairs[c] != stack[-1]:
                     return False
-                entry = stack.pop()
-                if (
-                    entry == "["
-                    and s[i] != "]"
-                    or entry == "{"
-                    and s[i] != "}"
-                    or entry == "("
-                    and s[i] != ")"
-                ):
-                    return False
-
-        return not stack
-
+                stack.pop()
+        
+        return len(stack) == 0
 
 # @lc code=end
