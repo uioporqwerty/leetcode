@@ -1,11 +1,12 @@
 {
-	"folders": [
-		{
-			"name": "leetcode",
-			"path": "../leetcode/"
-		}
-	],
-	"settings": {
-		"python.pythonPath": "/usr/bin/python3"
-	}
+  "folders": [
+    {
+      "name": "leetcode",
+      "path": "../leetcode/"
+    }
+  ],
+  "settings": {
+    "python.pythonPath": "/usr/bin/python3",
+    "github.copilot.editor.enableAutoCompletions": false
+  }
 }
